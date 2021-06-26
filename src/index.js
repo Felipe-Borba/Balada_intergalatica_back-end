@@ -8,7 +8,7 @@ import CustomerRouter from "./Router/customer.js";
 
 const app = express();
 app.use(express.json());
-app.use(cors);
+app.use(cors());
 
 app.use("/alien", AlienRouter);
 app.use("/party", PartyRouter);
@@ -20,7 +20,7 @@ app.use((err, req, res, _) => {
 });
 
 const PORT = 8080;
-app.listen(PORT, () => {
+app.listen(PORT, async () => {
   await createTables();
   console.log(`api started on http://localhost:${PORT}`);
 });
