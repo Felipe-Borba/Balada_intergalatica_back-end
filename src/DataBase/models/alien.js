@@ -1,5 +1,5 @@
-import Sequelize from 'sequelize';
-import Connection from '../connection.js';
+import Sequelize from "sequelize";
+import Connection from "../connection.js";
 
 const Alien = Connection.define(
   "aliens",

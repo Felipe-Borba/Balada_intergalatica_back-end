@@ -1,22 +1,25 @@
-import Alien from "./DataBase/models/alien.js";
-import Party from "./DataBase/models/party.js";
+import Nightclub from "./DataBase/models/customer.js";
 import createTables from "./DataBase/create.table.js";
 
-createTables();
+const int = async () => {
+  await createTables();
 
-test();
+  test();
+};
+int();
 
 async function test() {
   const res = await dbTest({
-    name: "felipe",
-    restrictedItems: ["banana", "bone"],
+    alienId: 1,
+    partyId: 2,
+    checkIn: "2021-01-09 12:00:00 +0000",
   });
   console.log(res.dataValues);
 }
 
 async function dbTest(data) {
   try {
-    return await Party.create(data);
+    return await Nightclub.create(data);
   } catch (error) {
     throw error;
   }
