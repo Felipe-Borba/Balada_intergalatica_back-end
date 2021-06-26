@@ -1,5 +1,6 @@
 import RegisterRepository from "../Repository/register.js";
 import BacklogRepository from "../Repository/backlog.js";
+import AlienRepository from "../Repository/alien.js";
 import Alien from "../Repository/alien.js";
 
 async function checkIn(customer) {
@@ -15,6 +16,8 @@ async function checkIn(customer) {
 async function checkOut(id) {
   const register = await RegisterRepository.getRegisterByAlienId(id);
 
+  minimumTime(register[0]);
+
   const backlog = {
     checkIn: register[0].checkIn,
     alienId: register[0].alienId,
@@ -25,6 +28,14 @@ async function checkOut(id) {
   await BacklogRepository.insertBacklog(backlog);
 
   await RegisterRepository.deleteRegister(id);
+}
+
+function minimumTime(register) {
+  const checkIn = new Date(register.checkIn).getMinutes();
+  const currentTime = new Date().getMinutes();
+  if (currentTime - checkIn < 1) {
+    throw new Error("Esperar pelomenos 1 minuto para fazer o check out");
+  }
 }
 
 function getAge(dateString) {
