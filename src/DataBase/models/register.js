@@ -3,10 +3,10 @@ import Connection from "../connection.js";
 import Alien from "./alien.js";
 import Party from "./party.js";
 
-const Costumer = Connection.define(
-  "costumers",
+const Register = Connection.define(
+  "registers",
   {
-    costumerId: {
+    registerId: {
       type: Sequelize.INTEGER,
       autoIncrement: true,
       allowNull: false,
@@ -24,7 +24,7 @@ const Costumer = Connection.define(
   { underscored: true }
 );
 
-Costumer.belongsTo(Alien, { foreignKey: "alienId" });
-Costumer.belongsTo(Party, { foreignKey: "partyId" });
+Register.belongsTo(Alien, { foreignKey: "alienId" });
+Register.belongsTo(Party, { foreignKey: "partyId" });
 
-export default Costumer;
+export default Register;

@@ -4,7 +4,7 @@ import cors from "cors";
 import createTables from "./DataBase/create.table.js";
 import AlienRouter from "./Router/alien.js";
 import PartyRouter from "./Router/party.js";
-import CustomerRouter from "./Router/customer.js";
+import RegisterRouter from "./Router/register.js";
 
 const app = express();
 app.use(express.json());
@@ -12,7 +12,7 @@ app.use(cors());
 
 app.use("/alien", AlienRouter);
 app.use("/party", PartyRouter);
-app.use("/costumer", CustomerRouter);
+app.use("/register", RegisterRouter);
 
 app.use((err, req, res, _) => {
   console.log(`${req.method} ${req.baseUrl} - ${err.message}`);
