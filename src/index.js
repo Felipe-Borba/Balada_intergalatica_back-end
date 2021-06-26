@@ -1,26 +1,22 @@
-import Nightclub from "./DataBase/models/customer.js";
+import express from "express";
+import cors from "cors";
+
 import createTables from "./DataBase/create.table.js";
 
-const int = async () => {
+const app = express();
+app.use(express.json());
+app.use(cors);
+app.use("/alien", AlienRouter);
+app.use("/party", PartyRouter);
+app.use("/costumer", CostumerRouter);
+
+app.use((err, req, res, _) => {
+  console.log(`${req.method} ${req.baseUrl} - ${err.message}`);
+  res.status(400).send({ error: err.message });
+});
+
+const PORT = 8080;
+app.listen(PORT, () => {
   await createTables();
-
-  test();
-};
-int();
-
-async function test() {
-  const res = await dbTest({
-    alienId: 1,
-    partyId: 2,
-    checkIn: "2021-01-09 12:00:00 +0000",
-  });
-  console.log(res.dataValues);
-}
-
-async function dbTest(data) {
-  try {
-    return await Nightclub.create(data);
-  } catch (error) {
-    throw error;
-  }
-}
+  console.log(`api started on http://localhost:${PORT}`);
+});
