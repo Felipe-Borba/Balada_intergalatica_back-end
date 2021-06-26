@@ -8,7 +8,7 @@ async function getAlien() {
   return await Alien.findAll();
 }
 
-async function getAlien(id) {
+async function getAlienById(id) {
   return await Alien.findByPk(id);
 }
 
@@ -19,7 +19,7 @@ async function updateAlien(alien) {
     },
   });
 
-  return await getAlien(alien.alienId);
+  return await getAlienById(alien.alienId);
 }
 
 async function deleteAlien(id) {
@@ -35,6 +35,7 @@ async function deleteAlien(id) {
 export default {
   insertAlien,
   getAlien,
+  getAlienById,
   updateAlien,
   deleteAlien,
 };

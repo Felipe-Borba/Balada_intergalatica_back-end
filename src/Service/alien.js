@@ -1,7 +1,7 @@
 import AlienRepository from "../Repository/alien.js";
 
 async function createAlien(alien) {
-  return await AlienRepository.createAlien(alien);
+  return await AlienRepository.insertAlien(alien);
 }
 
 async function getAlien() {
@@ -16,6 +16,7 @@ async function updateAlien(alien) {
   return await AlienRepository.updateAlien(alien);
 }
 
+//TODO only if there is no costumer with this party id
 async function deleteAlien(id) {
   return await AlienRepository.deleteAlien(id);
 }
