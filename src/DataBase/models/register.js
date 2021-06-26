@@ -16,10 +16,6 @@ const Register = Connection.define(
       type: Sequelize.DATE,
       allowNull: false,
     },
-    checkOut: {
-      type: Sequelize.DATE,
-      allowNull: true,
-    },
   },
   { underscored: true }
 );

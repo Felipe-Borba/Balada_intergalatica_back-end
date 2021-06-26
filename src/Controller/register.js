@@ -22,10 +22,9 @@ async function CheckIn(req, res, next) {
 
 async function CheckOut(req, res, next) {
   try {
-    //TODO implementation
     const alienId = req.params.id;
 
-    res.send("to be implemented");
+    res.send(await service.checkOut(alienId));
   } catch (error) {
     next(error);
   }

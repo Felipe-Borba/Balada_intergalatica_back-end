@@ -4,16 +4,18 @@ import Alien from "../Repository/alien.js";
 async function checkIn(customer) {
   const alien = await Alien.getAlienById(customer.alienId);
 
-  checkAge(alien.earthBirthday);
+  if (getAge(alien.earthBirthday) < 25) {
+    throw new Error(`O alien ${alien.name} é menor de 25 anos terraqueos`);
+  }
 
   return await Repository.insertRegister(customer);
 }
 
 async function checkOut(id) {
-  //TODO check out implementation
+  await Repository.deleteRegister(id);
 }
 
-function checkAge(dateString) {
+function getAge(dateString) {
   var today = new Date();
   var birthDate = new Date(dateString);
   var age = today.getFullYear() - birthDate.getFullYear();
@@ -21,10 +23,6 @@ function checkAge(dateString) {
 
   if (m < 0 || (m === 0 && today.getDate() < birthDate.getDate())) {
     age--;
-  }
-
-  if (age < 25) {
-    throw new Error(`O alien ${alien.name} é menor de 25 anos terraqueos`);
   }
 
   return age;

@@ -25,7 +25,7 @@ async function updateRegister(register) {
 async function deleteRegister(id) {
   await Register.destroy({
     where: {
-      registerId: id,
+      alien_id: id,
     },
   });
 
