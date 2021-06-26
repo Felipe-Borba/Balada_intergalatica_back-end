@@ -10,6 +10,7 @@ async function createAlien(req, res, next) {
     alien = {
       name: alien.nome,
       earthBirthday: alien.dataDeNascimento,
+      banned: false,
     };
 
     res.send(await service.createAlien(alien));
@@ -46,6 +47,7 @@ async function updateAlien(req, res, next) {
       alienId: alien.id,
       name: alien.nome,
       earthBirthday: alien.dataDeNascimento,
+      banned: alien.banido,
     };
 
     res.send(await service.updateAlien(alien));

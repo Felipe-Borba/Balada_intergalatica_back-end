@@ -18,6 +18,10 @@ const Alien = Connection.define(
       type: Sequelize.DATE,
       allowNull: false,
     },
+    banned: {
+      type: Sequelize.BOOLEAN,
+      allowNull: false,
+    },
   },
   { underscored: true }
 );
