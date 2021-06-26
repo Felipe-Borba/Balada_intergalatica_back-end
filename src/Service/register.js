@@ -1,4 +1,5 @@
-import Repository from "../Repository/register.js";
+import RegisterRepository from "../Repository/register.js";
+import BacklogRepository from "../Repository/backlog.js";
 import Alien from "../Repository/alien.js";
 
 async function checkIn(customer) {
@@ -8,11 +9,22 @@ async function checkIn(customer) {
     throw new Error(`O alien ${alien.name} é menor de 25 anos terraqueos`);
   }
 
-  return await Repository.insertRegister(customer);
+  return await RegisterRepository.insertRegister(customer);
 }
 
 async function checkOut(id) {
-  await Repository.deleteRegister(id);
+  const register = await RegisterRepository.getRegisterByAlienId(id);
+
+  const backlog = {
+    checkIn: register[0].checkIn,
+    alienId: register[0].alienId,
+    partyId: register[0].partyId,
+    checkOut: new Date(),
+  };
+
+  await BacklogRepository.insertBacklog(backlog);
+
+  await RegisterRepository.deleteRegister(id);
 }
 
 function getAge(dateString) {

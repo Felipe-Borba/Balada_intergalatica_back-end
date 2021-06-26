@@ -12,6 +12,14 @@ async function getRegisterById(id) {
   return await Register.findByPk(id);
 }
 
+async function getRegisterByAlienId(id) {
+  return await Register.findAll({
+    where: {
+      alienId: id,
+    },
+  });
+}
+
 async function updateRegister(register) {
   await Register.update(register, {
     where: {
@@ -36,6 +44,7 @@ export default {
   insertRegister,
   getRegister,
   getRegisterById,
+  getRegisterByAlienId,
   updateRegister,
   deleteRegister,
 };
