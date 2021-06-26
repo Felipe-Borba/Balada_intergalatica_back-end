@@ -8,7 +8,7 @@ async function getParty() {
   return await Party.findAll();
 }
 
-async function getParty(id) {
+async function getPartyById(id) {
   return await Party.findByPk(id);
 }
 
@@ -19,7 +19,7 @@ async function updateParty(party) {
     },
   });
 
-  return await getParty(party.partyId);
+  return await getPartyById(party.partyId);
 }
 
 async function deleteParty(id) {
@@ -35,6 +35,7 @@ async function deleteParty(id) {
 export default {
   insertParty,
   getParty,
+  getPartyById,
   updateParty,
   deleteParty,
 };

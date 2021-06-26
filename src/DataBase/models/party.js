@@ -16,7 +16,7 @@ const Party = Connection.define(
     },
     restrictedItems: {
       type: Sequelize.JSON,
-      allowNull: false,
+      allowNull: true,
     },
   },
   { underscored: true }

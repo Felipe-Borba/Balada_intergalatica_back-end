@@ -1,7 +1,7 @@
 import PartyRepository from "../Repository/party.js";
 
 async function createParty(party) {
-  return await PartyRepository.createParty(party);
+  return await PartyRepository.insertParty(party);
 }
 
 async function getParty() {
@@ -17,6 +17,7 @@ async function updateParty(party) {
 }
 
 async function deleteParty(id) {
+  //TODO only if there is no costumer with this party id
   return await PartyRepository.deleteParty(id);
 }
 
