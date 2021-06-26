@@ -1,18 +1,22 @@
-import Alien from './DataBase/models/alien.js'
-import createTables from './DataBase/create.table.js';
-
+import Alien from "./DataBase/models/alien.js";
+import Party from "./DataBase/models/party.js";
+import createTables from "./DataBase/create.table.js";
 
 createTables();
 
-const res = dbTest({
-  name: 'felipe',
-  earthBirthday: "01/09/1995"
-}).then((res)=>console.log("hello world:", res.dataValues));
+test();
 
+async function test() {
+  const res = await dbTest({
+    name: "felipe",
+    restrictedItems: ["banana", "bone"],
+  });
+  console.log(res.dataValues);
+}
 
 async function dbTest(data) {
   try {
-    return await Alien.create(data);
+    return await Party.create(data);
   } catch (error) {
     throw error;
   }
