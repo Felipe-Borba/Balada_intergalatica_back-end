@@ -2,13 +2,17 @@ import express from "express";
 import cors from "cors";
 
 import createTables from "./DataBase/create.table.js";
+import AlienRouter from "./Router/alien.js";
+import PartyRouter from "./Router/party.js";
+import CustomerRouter from "./Router/customer.js";
 
 const app = express();
 app.use(express.json());
 app.use(cors);
+
 app.use("/alien", AlienRouter);
 app.use("/party", PartyRouter);
-app.use("/costumer", CostumerRouter);
+app.use("/costumer", CustomerRouter);
 
 app.use((err, req, res, _) => {
   console.log(`${req.method} ${req.baseUrl} - ${err.message}`);
