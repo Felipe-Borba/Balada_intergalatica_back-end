@@ -51,6 +51,10 @@ async function checkOut(id) {
   await RegisterRepository.deleteRegister(id);
 }
 
+async function getRegister() {
+  return await RegisterRepository.getRegister();
+}
+
 function minimumTime(register) {
   const checkIn = new Date(register.checkIn).getMinutes();
   const currentTime = new Date().getMinutes();
@@ -75,4 +79,5 @@ function getAge(dateString) {
 export default {
   checkIn,
   checkOut,
+  getRegister,
 };

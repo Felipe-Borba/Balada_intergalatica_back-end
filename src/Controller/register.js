@@ -31,7 +31,16 @@ async function CheckOut(req, res, next) {
   }
 }
 
+async function getRegister(req, res, next) {
+  try {
+    res.send(await service.getRegister());
+  } catch (error) {
+    next(error);
+  }
+}
+
 export default {
   CheckIn,
   CheckOut,
+  getRegister,
 };
