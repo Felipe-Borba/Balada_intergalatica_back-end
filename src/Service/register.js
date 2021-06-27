@@ -25,6 +25,12 @@ async function checkIn(customer) {
     throw new Error(`alien ${alien.name} já está em uma balada e foi  banido `);
   }
 
+  customer.objects.forEach((item) => {
+    if (party.restrictedItems.find((restrict) => restrict == item)) {
+      throw new Error(`${alien.name} tem um item proibido`);
+    }
+  });
+
   return await RegisterRepository.insertRegister(customer);
 }
 

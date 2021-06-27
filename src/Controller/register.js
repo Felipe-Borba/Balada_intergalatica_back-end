@@ -4,14 +4,15 @@ async function CheckIn(req, res, next) {
   try {
     let data = req.body;
 
-    if (!data.alien_id || !data.festa_id) {
-      throw new Error("campos: alien_id e festa_id são obrigatórios");
+    if (!data.alien_id || !data.festa_id || !data.objetos) {
+      throw new Error("campos: objetos, alien_id e festa_id são obrigatórios");
     }
 
     data = {
       alienId: data.alien_id,
       partyId: data.festa_id,
       checkIn: new Date(),
+      objects: data.objetos,
     };
 
     res.send(await service.checkIn(data));
