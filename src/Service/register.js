@@ -1,13 +1,28 @@
 import RegisterRepository from "../Repository/register.js";
 import BacklogRepository from "../Repository/backlog.js";
 import AlienRepository from "../Repository/alien.js";
-import Alien from "../Repository/alien.js";
+import PartyRepository from "../Repository/party.js";
 
 async function checkIn(customer) {
-  const alien = await Alien.getAlienById(customer.alienId);
+  let alien = await AlienRepository.getAlienById(customer.alienId);
+  const party = await PartyRepository.getPartyById(customer.partyId);
+  const alreadyIn = await RegisterRepository.getRegisterByAlienId(
+    customer.alienId
+  );
 
   if (getAge(alien.earthBirthday) < 25) {
     throw new Error(`O alien ${alien.name} é menor de 25 anos terraqueos`);
+  }
+
+  if (alien.banned) {
+    throw new Error(`alien ${alien.name} está banido`);
+  }
+
+  if (alreadyIn.length) {
+    alien = { ...alien.dataValues, banned: true };
+    await AlienRepository.updateAlien(alien);
+    await RegisterRepository.deleteRegister(customer.alienId);
+    throw new Error(`alien ${alien.name} já está em uma balada e foi  banido `);
   }
 
   return await RegisterRepository.insertRegister(customer);
