@@ -15,14 +15,16 @@ async function checkIn(customer) {
   }
 
   if (alien.banned) {
-    throw new Error(`alien ${alien.name} está banido`);
+    throw new Error(`O alien ${alien.name} está banido`);
   }
 
   if (alreadyIn.length) {
     alien = { ...alien.dataValues, banned: true };
     await AlienRepository.updateAlien(alien);
     await RegisterRepository.deleteRegister(customer.alienId);
-    throw new Error(`alien ${alien.name} já está em uma balada e foi  banido `);
+    throw new Error(
+      `O alien ${alien.name} já está em uma balada e foi  banido `
+    );
   }
 
   customer.objects.forEach((item) => {
