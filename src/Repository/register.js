@@ -1,11 +1,22 @@
 import Register from "../DataBase/models/register.js";
+import Alien from "../DataBase/models/alien.js";
+import Party from "../DataBase/models/party.js";
 
 async function insertRegister(register) {
   return await Register.create(register);
 }
 
 async function getRegister() {
-  return await Register.findAll();
+  return await Register.findAll({
+    include: [
+      {
+        model: Alien,
+      },
+      {
+        model: Party,
+      },
+    ],
+  });
 }
 
 async function getRegisterById(id) {
