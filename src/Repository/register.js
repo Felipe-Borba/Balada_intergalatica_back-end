@@ -12,10 +12,18 @@ async function getRegisterById(id) {
   return await Register.findByPk(id);
 }
 
-async function getRegisterByAlienId(id) {
+async function getRegisterByAlienId(alienId) {
   return await Register.findAll({
     where: {
-      alienId: id,
+      alienId,
+    },
+  });
+}
+
+async function getRegisterByPartyId(partyId) {
+  return await Register.findAll({
+    where: {
+      partyId,
     },
   });
 }
@@ -47,4 +55,5 @@ export default {
   getRegisterByAlienId,
   updateRegister,
   deleteRegister,
+  getRegisterByPartyId,
 };

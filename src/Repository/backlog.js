@@ -43,10 +43,38 @@ async function deleteBacklog(id) {
   return `backlog id=${id} deleted`;
 }
 
+async function getBacklogByAlienId(alienId) {
+  return await Backlog.findAll({
+    where: {
+      alienId,
+    },
+    include: [
+      {
+        model: Alien,
+      },
+    ],
+  });
+}
+
+async function getBacklogByPartyId(partyId) {
+  return await Backlog.findAll({
+    where: {
+      partyId,
+    },
+    include: [
+      {
+        model: Party,
+      },
+    ],
+  });
+}
+
 export default {
   insertBacklog,
   getBacklog,
   getBacklogById,
   updateBacklog,
   deleteBacklog,
+  getBacklogByAlienId,
+  getBacklogByPartyId,
 };
