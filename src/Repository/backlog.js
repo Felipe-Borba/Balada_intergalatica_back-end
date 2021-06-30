@@ -1,11 +1,22 @@
 import Backlog from "../DataBase/models/backlog.js";
+import Alien from "../DataBase/models/alien.js";
+import Party from "../DataBase/models/party.js";
 
 async function insertBacklog(backlog) {
   return await Backlog.create(backlog);
 }
 
 async function getBacklog() {
-  return await Backlog.findAll();
+  return await Backlog.findAll({
+    include: [
+      {
+        model: Alien,
+      },
+      {
+        model: Party,
+      },
+    ],
+  });
 }
 
 async function getBacklogById(id) {

@@ -33,7 +33,9 @@ async function CheckOut(req, res, next) {
 
 async function getRegister(req, res, next) {
   try {
-    res.send(await service.getRegister());
+    const filter = { ...req.query };
+
+    res.send(await service.getRegister(filter));
   } catch (error) {
     next(error);
   }

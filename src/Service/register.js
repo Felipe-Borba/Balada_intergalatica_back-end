@@ -53,7 +53,11 @@ async function checkOut(id) {
   await RegisterRepository.deleteRegister(id);
 }
 
-async function getRegister() {
+async function getRegister(filter) {
+  if (filter.backlog) {
+    return await BacklogRepository.getBacklog();
+  }
+
   return await RegisterRepository.getRegister();
 }
 
