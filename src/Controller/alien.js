@@ -21,7 +21,9 @@ async function createAlien(req, res, next) {
 
 async function getAlien(req, res, next) {
   try {
-    res.send(await service.getAlien());
+    const aliens = await service.getAlien();
+    aliens.sort((a, b) => a.alienId - b.alienId);
+    res.send(aliens);
   } catch (error) {
     next(error);
   }
