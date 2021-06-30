@@ -61,6 +61,10 @@ async function getRegister(filter) {
   return await RegisterRepository.getRegister();
 }
 
+async function deleteBacklog(id) {
+  return await BacklogRepository.deleteBacklog(id);
+}
+
 function minimumTime(register) {
   const checkIn = new Date(register.checkIn).getMinutes();
   const currentTime = new Date().getMinutes();
@@ -86,4 +90,5 @@ export default {
   checkIn,
   checkOut,
   getRegister,
+  deleteBacklog,
 };

@@ -33,14 +33,14 @@ async function updateBacklog(backlog) {
   return await getBacklogById(backlog.backlogId);
 }
 
-async function deleteBacklog(id) {
+async function deleteBacklog(backlogId) {
   await Backlog.destroy({
     where: {
-      backlogId: id,
+      backlogId,
     },
   });
 
-  return `backlog id=${id} deleted`;
+  return `backlog id=${backlogId} deleted`;
 }
 
 async function getBacklogByAlienId(alienId) {

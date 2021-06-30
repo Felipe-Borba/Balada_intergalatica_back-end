@@ -41,8 +41,18 @@ async function getRegister(req, res, next) {
   }
 }
 
+async function deleteBacklog(req, res, next) {
+  try {
+    const id = req.params.id;
+
+    res.send(await service.deleteBacklog(id));
+  } catch (error) {
+    next(error);
+  }
+}
 export default {
   CheckIn,
   CheckOut,
   getRegister,
+  deleteBacklog,
 };
