@@ -10,6 +10,14 @@ async function checkIn(customer) {
     customer.alienId
   );
 
+  if (!alien) {
+    throw new Error(`Alien não encontrado`);
+  }
+
+  if (!party) {
+    throw new Error(`Balada não encontrada`);
+  }
+
   if (getAge(alien.earthBirthday) < 25) {
     throw new Error(`O alien ${alien.name} é menor de 25 anos terraqueos`);
   }
@@ -27,12 +35,13 @@ async function checkIn(customer) {
     );
   }
 
-  customer.objects.forEach((item) => {
-    if (party.restrictedItems.find((restrict) => restrict == item)) {
-      throw new Error(`${alien.name} tem um item proibido`);
-    }
-  });
-
+  if (party.restrictedItems) {
+    customer.objects.forEach((item) => {
+      if (party.restrictedItems.find((restrict) => restrict == item)) {
+        throw new Error(`${alien.name} tem um item proibido`);
+      }
+    });
+  }
   return await RegisterRepository.insertRegister(customer);
 }
 
@@ -66,9 +75,11 @@ async function deleteBacklog(id) {
 }
 
 function minimumTime(register) {
-  const checkIn = new Date(register.checkIn).getMinutes();
-  const currentTime = new Date().getMinutes();
-  if (currentTime - checkIn < 1) {
+  const checkIn = new Date(register.checkIn).getTime();
+  const currentTime = Date.now();
+  const MILLISECONDS_PER_MINUTE = 60 * 1000;
+
+  if (currentTime - checkIn < MILLISECONDS_PER_MINUTE) {
     throw new Error("Esperar pelomenos 1 minuto para fazer o check out");
   }
 }
