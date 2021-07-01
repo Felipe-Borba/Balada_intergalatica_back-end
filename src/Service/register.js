@@ -35,7 +35,7 @@ async function checkIn(customer) {
     );
   }
 
-  if (party.restrictedItems) {
+  if (party.restrictedItems && customer.objects) {
     customer.objects.forEach((item) => {
       if (party.restrictedItems.find((restrict) => restrict == item)) {
         throw new Error(`${alien.name} tem um item proibido`);
