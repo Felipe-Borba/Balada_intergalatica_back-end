@@ -7,6 +7,10 @@ async function createParty(req, res, next) {
     if (!party.nome) {
       throw new Error("campo nome é obrigatório");
     }
+    if (!party.itensProibidos) {
+      party.itensProibidos = [];
+    }
+
     party = {
       name: party.nome,
       restrictedItems: party.itensProibidos,
@@ -42,6 +46,10 @@ async function updateParty(req, res, next) {
     if (!party.nome || !party.id) {
       throw new Error("campo nome e id são obrigatórios");
     }
+    if (!party.itensProibidos) {
+      party.itensProibidos = [];
+    }
+
     party = {
       partyId: party.id,
       name: party.nome,
