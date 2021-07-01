@@ -3,6 +3,8 @@
 Esse projeto foi proposto para ser desenvolvido em uma semana. Para ver a descrição completa do desafio acesse:
 [balada_intergalactica.pdf](https://github.com/Felipe-Borba/Balada_intergalatica_back-end/blob/main/balada_intergalactica.pdf)
 
+O código do front-end pode ser acessado em: [Balada_intergalatica_front-end](https://github.com/Felipe-Borba/Balada_intergalatica_front-end)
+
 ## Authors
 
 - [@Felipe-Borba](https://www.github.com/Felipe-Borba)
