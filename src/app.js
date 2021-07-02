@@ -1,7 +1,6 @@
 import express from "express";
 import cors from "cors";
 
-import createTables from "./DataBase/create.table.js";
 import AlienRouter from "./Router/alien.js";
 import PartyRouter from "./Router/party.js";
 import RegisterRouter from "./Router/register.js";
@@ -19,8 +18,4 @@ app.use((err, req, res, _) => {
   res.status(400).send({ error: err.message });
 });
 
-const PORT = 8080;
-app.listen(PORT, async () => {
-  await createTables();
-  console.log(`api started on http://localhost:${PORT}`);
-});
+export default app;
